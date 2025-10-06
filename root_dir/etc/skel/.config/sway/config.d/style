@@ -1,0 +1,22 @@
+#Border
+default_border pixel 2
+default_floating_border pixel 2
+
+# Sway color scheme (using catppuccin)
+# class                 border  backgr. text    indicator child_border
+client.focused          #b7bdf8 #24273a #cad3f5 #f4dbd6   #b7bdf8
+client.focused_inactive #6e738d #24273a #cad3f5 #f4dbd6   #6e738d
+client.unfocused        #6e738d #24273a #cad3f5 #f4dbd6   #6e738d
+client.urgent           #f5a97f #24273a #f5a97f #6e738d   #f5a97f
+client.placeholder      #6e738d #24273a #cad3f5 #6e738d   #6e738d
+client.background       #24273a
+
+
+# set look and feel
+# Might need to check ~/.config/gtk-3.0, ~/gtk2rc
+#exec gsettings set org.gnome.desktop.interface gtk-theme Breeze
+#exec gsettings set org.gnome.desktop.interface cursor-theme Breeze_Obsidian
+#exec gsettings set org.gnome.desktop.interface icon-theme Papirus
+#exec seat seat0 xcursor_theme Breeze_Obsidian 20
+#exec gsettings set org.gnome.desktop.interface color-scheme prefer-light
+#exec gsettings set org.gnome.desktop.interface accent-color red

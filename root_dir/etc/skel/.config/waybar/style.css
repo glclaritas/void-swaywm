@@ -1,0 +1,68 @@
+/*
+ * @import url("../sway/colors.css");
+ */
+@import "macchiato.css";
+
+* {
+    font-family: 'Symbols Nerd Font Mono', 'Source Code Pro';
+    font-size: 14px;
+
+    transition: none;
+    box-shadow: none;
+    margin: 0px;
+    padding: 0px;
+}
+window#waybar {
+    /*background: rgba(10,10,10,0.7);*/
+    background-color: shade(@base, 0.9);
+    border-radius: 0px;
+    transition-duration: 0.2s;
+}
+#workspaces {
+    background-color: transparent;
+    border-radius: 10px 10px 10px 10px;
+    margin: 4px;
+}
+
+#workspaces button{
+    background: @crust;
+    padding: 0 4px 0 4px;
+    border: none;
+    color: @text;
+    border-radius: 0px;
+}
+#workspaces button.empty {
+    color: @surface1;
+}
+#workspaces button.focused {
+    color: @text;
+}
+#workspaces button:first-child {
+    border-radius: 10px 0 0 10px; 
+}
+#workspaces button:last-child {
+    border-radius: 0 10px 10px 0;
+}
+#workspaces button:hover {
+    background-color: @surface2;
+    color: @text;
+}
+#taskbar, #tray, label.module {
+    background-color: @surface0;
+    font-size: 13px;
+    color: @text;
+    padding: 0 10px 0 10px;
+    border-radius: 20px;
+    margin: 4px 4px 4px 0;
+}
+/*
+label.module:last-child{
+    margin-right: 0px;
+}
+label.module:first-child{
+    margin-left: 0px;
+}
+*/
+#pulseaudio, #wireplumber {
+    min-width: 35px;
+}

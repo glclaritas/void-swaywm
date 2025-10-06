@@ -1,0 +1,66 @@
+#Basic variables
+#Preferences Mod1 for Windows/Super key. Mod1 for alt
+set $mod Mod4
+set $term foot
+set $dmenu fuzzel --icon-theme=Papirus
+set $left h
+set $right l
+set $up k
+set $down j
+set $resizepx 10px
+floating_modifier $mod normal
+
+## Touchpad  ##
+input "type:touchpad" {
+    dwt enabled
+    tap enabled
+    accel_profile "flat"    #disable acceleration
+    pointer_accel 1
+}
+
+### Keymap ###
+input "type:keyboard" {
+	xkb_layout "us,mm"
+    #xkb_layout "rkg65-en,mm"
+	xkb_options "grp:win_space_toggle"
+	repeat_delay 200
+	repeat_rate 50
+}
+input "9639:64112:Compx_2.4G_Wireless_Receiver" {
+    xkb_layout "rkg65-en,mm"
+}
+### Mouse ###
+input "type:pointer" {
+    accel_profile "flat" #disable mouse acceleration
+    pointer_accel 1
+}
+
+### Display ###
+output eDP-1 {
+    bg ~/Pictures/Wallpapers/wallpaper fill
+#    allow_tearing no
+#    color_profile icc ~/.config/sway/colorprofiles/G531GU_8086_70380042.icm
+}
+
+xwayland enable
+
+# startups
+exec dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec pipewire
+exec pipewire-pulse
+exec wireplumber
+exec swaync
+exec /usr/libexec/polkit-mate-authentication-agent-1
+#exec /usr/libexec/xdg-desktop-portal-wlr
+#exec /usr/libexec/xdg-desktop-portal
+exec wl-paste -t text --watch clipman store --no-persist
+exec swayosd-server
+exec $(sleep 0.4 && swayosd-client --custom-message Hello!)
+
+bar {
+    swaybar_command waybar
+}
+
+include ~/.config/sway/config.d/keybinding
+include ~/.config/sway/config.d/style
+include ~/.config/sway/config.d/workspaces

@@ -1,0 +1,42 @@
+#!/bin/bash
+
+if [ -z "$1" ] || [ $# -gt 1 ] || [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+    echo "Usage: $0 username"
+    echo "This can be used to update the configs for another user from the current user"
+    exit 1
+fi
+# check name validity as POSIX rule and sanitize
+if [[ ! "$1" =~ ^[a-z][a-z0-9_-]{0,31}$ ]]; then
+    echo "Error: Invalid username '$1'" >&2
+    exit 1
+fi
+_user="$1"
+if ! getent passwd "$_user" > /dev/null 2>&1; then
+    echo "Error: user $1 doesn't exist" >&2
+    exit 1
+else
+    _userhome="$(getent passwd "$_user" | cut -d: -f6)"
+    _usergrp="$(getent passwd "$_user" | cut -d: -f4)"
+    if [ -z "$_userhome" ];then
+        echo "Error: user $_user doesn't have home directory" >&2
+        exit 1
+    fi
+fi
+echo "user is ${_user}($_userhome)"
+
+sudo -v
+# update /etc/skel
+echo "[INFO] Updating /etc/skel"
+cmd_path="$(realpath "$(dirname "$0")")"
+[ -d /etc/skel ] && sudo rm -rf /etc/skel
+sudo rsync -av --delete --chown root:root "$cmd_path"/root_dir/etc/skel/ /etc/skel
+sudo rsync -av --chown=root:root "$cmd_path"/root_dir/etc/{issue,rc.local} /etc
+
+# Reinstall the /etc/skel/ contents to <user> home
+echo "[INFO] Installing skel files to $_userhome"
+sudo rsync -av --chown="${_user}:${_usergrp}" /etc/skel/{.bash_profile,.bashrc,.xkb} "$_userhome"
+for d in /etc/skel/.config/*; do
+    if [ -d "$d" ]; then
+        sudo rsync -av --chown="${_user}:${_usergrp}" --delete "$d/" "$_userhome/.config/$(basename "$d")"
+    fi
+done

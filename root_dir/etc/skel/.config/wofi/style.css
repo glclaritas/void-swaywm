@@ -1,0 +1,35 @@
+/* Color Themes */
+@define-color bg_main #2a0033;
+@define-color color_primary #f5426c;
+
+#window{
+	font-size: 13px;
+}
+#outer-box{
+	background-color: @bg_main;
+}
+#text{
+    padding: 0px;
+}
+#entry{
+	border:none;
+	min-width:80px;
+    color: white;
+    padding: 0px;
+    margin: 0px 10px 0px 10px;
+}
+#entry:selected{
+	background-color: @color_primary;
+	min-width:80px;
+}
+#input {
+    font-size: 13px;
+	background: @bg_main;
+	color: white;
+	border-radius:0px;
+	border:none;
+    min-height: 0px;
+}
+#input > image.left {
+    color: @color_primary;
+}

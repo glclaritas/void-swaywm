@@ -1,0 +1,140 @@
+//   󱑲 󱑳 󱑴
+
+{
+    "name": "minimal",
+    "layer": "bottom",
+    "width": "100%",
+    "height": 26,
+    "margin": "0 0 0 0",
+    "modules-left": ["sway/workspaces","sway/language"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray","custom/asusctl","network","pulseaudio","battery","custom/notification"],
+    "ipc": true,
+    "reload_style_on_change": true,
+
+    // Modules 
+    "sway/workspaces": {
+        "format": "{icon}",
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [] 
+        },
+        "format-icons": {
+            "urgent": "",
+            "focused": "",
+            "default": "",
+            "persistent": ""
+        }
+    },
+
+    "sway/language": {
+        "format": "<span text-transform='lowercase'>{shortDescription}</span>",
+        "tooltip-format": "{long}"
+    },
+    "clock": {
+        "format": "{:%I:%M %p}",
+        "format-alt": "{:%A, %B %d, %Y (%R)}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+                    "mode"          : "month",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "format": {
+                              "months":     "<span color='#ffead3' background='#ffffff'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9' background='#ffffff'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd' background='#ffffff'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66' background='#ffffff'><b>{}</b></span>",
+                              "today":      "<span color='#ffffff' background='#000000'><b>{}</b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-click-right": "mode",
+                    "on-scroll-up": "tz_up",
+                    "on-scroll-down": "tz_down",
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    }
+    },
+
+    "network": {
+        "format": "{ifname}",
+        "format-wifi": "{icon}",
+        "format-icons": ["󰤟","󰤢","󰤥","󰤨"],
+        "format-ethernet": "󰈀",
+        "format-disconnected": "", //An empty format will hide the module.
+        "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname}",
+        "tooltip-format-disconnected": "Disconnected",
+        "max-length": 50
+    },
+
+    "pulseaudio": {
+       	"format": "{icon}",
+       	"format-bluetooth": "{volume}% {icon} {format_source}",
+	"format-bluetooth-muted": "{icon}󰖁 {format_source}",
+	"format-muted": "󰖁",
+	"format-source": "",
+	"format-source-muted": "",
+	"format-icons": {
+               	"headphones": "",
+               	"handsfree": "󰟎",
+               	"headset": "󰋋",
+               	"phone": "",
+               	"portable": "",
+               	"car": "",
+               	"default": ["󰕿","󰖀","󰕾"]
+         	},
+        "tooltip-format": "Vol: {volume}\nMic: {format_source}",
+        "on-click": "pavucontrol",
+        "max-volume": 80
+    },
+
+    "battery": {
+        "interval": "60",
+        "format": "{icon}",
+        "format-icons": {
+            "default": ["󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"],
+            "charging": ["󰢜","󰂆","󰂇","󰂈","󰢝","󰂉","󰢞","󰂊","󰂋","󰂅"]
+        }       
+    },
+    "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "",
+      "none": "",
+      "dnd-notification": "",
+      "dnd-none": "",
+      "inhibited-notification": "",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+//    "exec-if": "! pgrep -x swaync-client > /dev/null",
+    "exec": "pkill -x swaync-client; swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10,
+        "icons": {
+            "TelegramDesktop": "telegram"
+        }
+    },
+    "custom/asusctl": {
+        "tooltip-format": "CPU: L,M,H\nFAN: 󱑲 󱑳 󱑴",
+        "interval": "once",
+        "tooltip": true,
+        "format": "{}",
+        "signal": 9,
+        "exec": "~/.config/sway/scripts/asusctl --display"
+    }
+}

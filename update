@@ -1,0 +1,29 @@
+#!/bin/bash
+
+script_dir="$( dirname -- "$BASH_SOURCE" )"
+
+rm -rf "$script_dir/root_dir/etc" && echo "Removed old dir"
+
+mkdir -p "$script_dir/root_dir/etc/skel/.config" && echo "Made new dir"
+for i in .bash_profile .bashrc .xkb; do
+    rsync -a --delete "$HOME/$i" "$script_dir/root_dir/etc/skel"
+done
+_configs="
+ foot
+ fuzzel
+ lf
+ mako
+ mpv
+ nvim
+ sway
+ swayimg
+ swayosd
+ swaync
+ waybar
+ wofi
+"
+for i in $_configs; do
+    rsync -a --delete "$HOME/.config/$i" "$script_dir/root_dir/etc/skel/.config"
+done
+
+rsync -pt /etc/{issue,rc.local} "$script_dir/root_dir/etc"

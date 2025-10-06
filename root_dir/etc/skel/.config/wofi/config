@@ -1,0 +1,13 @@
+run-always_parse_args=true
+allow_images=false
+hide_scroll=true
+insensitive=true
+prompt=
+height=24
+width=100%
+location=top
+y=-24
+orientation=horizontal
+sort_order=alphabetical
+content_halign=center
+halign=center
