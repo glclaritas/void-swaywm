@@ -1,6 +1,6 @@
 # Key Bindings
-bindsym XF86launch1 exec sh -c '~/.config/sway/scripts/asusctl --cpumodetoggle; pkill -RTMIN+9 waybar'
-bindsym XF86launch4 exec sh -c '~/.config/sway/scripts/asusctl --fanmodetoggle; pkill -RTMIN+9 waybar'
+bindsym XF86launch1 exec rogctl -dt
+bindsym XF86launch4 exec rogctl -df
 
 # Audio
 bindsym XF86AudioRaiseVolume exec swayosd-client --output-volume raise --max-volume=80

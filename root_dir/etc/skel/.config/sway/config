@@ -10,7 +10,7 @@ set $down j
 set $resizepx 10px
 floating_modifier $mod normal
 
-## Touchpad  ##
+# Touchpad  ##
 input "type:touchpad" {
     dwt enabled
     tap enabled
@@ -55,7 +55,7 @@ exec /usr/libexec/polkit-mate-authentication-agent-1
 #exec /usr/libexec/xdg-desktop-portal
 exec wl-paste -t text --watch clipman store --no-persist
 exec swayosd-server
-exec $(sleep 0.4 && swayosd-client --custom-message Hello!)
+exec rogctl -p2
 
 bar {
     swaybar_command waybar

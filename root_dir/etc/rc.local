@@ -5,15 +5,10 @@
 # (see /etc/runit/2).
 clear
 
-#Set keyboard brightness to max brightness
+#Set screen brightness to max brightness
 if [ -e /sys/class/backlight/intel_backlight/max_brightness ] && [ -e /sys/class/backlight/intel_backlight/brightness ]; then
 	echo $(cat /sys/class/backlight/intel_backlight/max_brightness) > /sys/class/backlight/intel_backlight/brightness
 fi
-
-chmod o+w /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy
-echo 2 > /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy
-chmod o+w /sys/devices/system/cpu/intel_pstate/no_turbo
-chmod o+w /sys/devices/system/cpu/cpu[0-9]*/cpufreq/scaling_max_freq
 
 #disable keyboard backlight
 if [ -e /sys/class/leds/asus\:\:kbd_backlight/brightness ]; then

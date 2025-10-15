@@ -8,7 +8,7 @@
     "margin": "0 0 0 0",
     "modules-left": ["sway/workspaces","sway/language"],
     "modules-center": ["clock"],
-    "modules-right": ["tray","custom/asusctl","network","pulseaudio","battery","custom/notification"],
+    "modules-right": ["tray","network","pulseaudio","battery","custom/notification"],
     "ipc": true,
     "reload_style_on_change": true,
 
@@ -129,12 +129,4 @@
             "TelegramDesktop": "telegram"
         }
     },
-    "custom/asusctl": {
-        "tooltip-format": "CPU: L,M,H\nFAN: 󱑲 󱑳 󱑴",
-        "interval": "once",
-        "tooltip": true,
-        "format": "{}",
-        "signal": 9,
-        "exec": "~/.config/sway/scripts/asusctl --display"
-    }
 }
