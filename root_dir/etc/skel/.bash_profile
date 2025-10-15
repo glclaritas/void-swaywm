@@ -11,7 +11,7 @@ if [[ "$(tty)" == "/dev/tty1" ]]; then
 
     export QT_QPA_PLATFORM=wayland-egl
     export WLR_DRM_DEVICES=$(readlink -f /dev/dri/by-path/pci-0000\:00\:02.0-card)  #use intel iGPU
-    export WLR_RENDERER=vulkan
+    #export WLR_RENDERER=vulkan
     export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
     export QT_WAYLAND_FORCE_DPI=physical
 

@@ -11,7 +11,7 @@ shopt -s autocd
 
 #clear history
 clear-history(){
-    rm -r ~/.bash_history*.tmp > /dev/null 2&>1
+    rm  ~/.bash_history*.tmp > /dev/null 2>&1
 }
 
 PS1='[\W] \$ '
