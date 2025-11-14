@@ -15,6 +15,7 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.backup = false
+vim.opt.swapfile = false
 --vim.opt.cmdheight = 0
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -34,8 +35,9 @@ vim.opt.winborder = 'rounded'
 -- LSP --
 vim.lsp.log.set_level(vim.log.levels.OFF)
 vim.lsp.enable({
-    'lua_ls',
     'clangd',
+    'gdscript',
+    'lua_ls',
     'rust-analyzer',
     'pyright',
     'bashls',

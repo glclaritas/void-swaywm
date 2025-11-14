@@ -19,6 +19,7 @@ _configs="
  swayimg
  swayosd
  swaync
+ xdg-desktop-portal-termfilechooser
  waybar
  wofi
 "

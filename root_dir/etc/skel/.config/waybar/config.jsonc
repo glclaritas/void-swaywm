@@ -6,7 +6,7 @@
     "width": "100%",
     "height": 26,
     "margin": "0 0 0 0",
-    "modules-left": ["sway/workspaces","sway/language"],
+    "modules-left": ["sway/workspaces","sway/language","sway/mode"],
     "modules-center": ["clock"],
     "modules-right": ["tray","network","pulseaudio","battery","custom/notification"],
     "ipc": true,
@@ -44,7 +44,7 @@
                     "weeks-pos"     : "right",
                     "on-scroll"     : 1,
                     "format": {
-                              "months":     "<span color='#ffead3' background='#ffffff'><b>{}</b></span>",
+                              "months":     "<span color='#ffead3' background='#000000'><b>{}</b></span>",
                               "days":       "<span color='#ecc6d9' background='#ffffff'><b>{}</b></span>",
                               "weeks":      "<span color='#99ffdd' background='#ffffff'><b>W{}</b></span>",
                               "weekdays":   "<span color='#ffcc66' background='#ffffff'><b>{}</b></span>",
