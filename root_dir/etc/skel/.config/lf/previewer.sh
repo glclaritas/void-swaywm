@@ -1,29 +1,24 @@
 #!/bin/sh
-# Max preview dimensions
-MAX_WIDTH=80
-MAX_HEIGHT=40
 
-# Clamp function
-clamp() {
-  local val=$1 max=$2
-  if [ "$val" -gt "$max" ]; then
-    echo "$max"
-  else
-    echo "$val"
-  fi
-}
+# see https://github.com/gokcehan/lf/blob/master/doc.md#previewer-string-default--not-filtered-if-empty
+# $1 = filename
+# $2 = preview pane width
+# $3 = preview pane height
+# $4 = horizontal position
+# $5 = vertical position
+# $6 = mode (preview | preload)
 
-case "$1" in
-  *.tar* | *.tgz) tar tf "$1";;
-  *.zip) unzip -l "$1";;
-  *.rar) unrar l "$1";;
-  *.7z) 7z l "$1";;
-  *.pdf) echo "This is pdf file. Open it manually";;
-  *.png | *.jpg | *.svg | *.gif | *.webp)
-    WIDTH=$(clamp "${2:-40}" "$MAX_WIDTH")
-    HEIGHT=$(clamp "${3:-20}" "$MAX_HEIGHT")
+case "$(file -Lb --mime-type -- "$1")" in
+  application/gzip | application/x-tar) tar tf "$1";;
+  application/zip) unzip -l "$1";;
+  application/vnd.rar | application/x-rar-compressed) unrar l "$1";;
+  application/x-7z-compressed) 7z l "$1";;
+  application/pdf) echo "This is pdf file. Open it manually";;
+  image/*)
+      touch /tmp/lf_last_img
+      WIDTH=$(( $2 * 90 / 100 ))
+      HEIGHT=$(( $3 * 90 / 100 ))
     chafa "$1" -f sixel -s "${WIDTH}x${HEIGHT}" --animate false --polite on
     exit 1;;
-  *) cat "$1";;
+  text/*)head -n "$3" "$1";;
 esac
-

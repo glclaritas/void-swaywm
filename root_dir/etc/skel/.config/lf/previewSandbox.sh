@@ -18,5 +18,5 @@ set -euo pipefail
      --ro-bind "$PWD" "$PWD" \
      --unshare-all \
      --new-session \
-     bash ~/.config/lf/previewer.sh "$@"
+    ~/.config/lf/previewer.sh "$@"
 )
