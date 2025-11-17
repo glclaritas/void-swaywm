@@ -10,9 +10,7 @@ alias ls='ls --color=auto'
 shopt -s autocd
 
 #clear history
-clear-history(){
-    rm  ~/.bash_history*.tmp > /dev/null 2>&1
-}
+rm $HOME/.bash_history*.tmp > /dev/null 2>&1
 
 PS1='[\W] \$ '
 PS0='\[\033[0m\]'

@@ -117,7 +117,7 @@
     },
     "return-type": "json",
 //    "exec-if": "! pgrep -x swaync-client > /dev/null",
-    "exec": "pkill -x swaync-client; swaync-client -swb",
+    "exec": "swaync-client -swb",
     "on-click": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
     "escape": true

@@ -29,14 +29,14 @@ sudo -v
 echo "[INFO] Updating /etc/skel"
 cmd_path="$(realpath "$(dirname "$0")")"
 [ -d /etc/skel ] && sudo rm -rf /etc/skel
-sudo rsync -av --delete --chown root:root "$cmd_path"/root_dir/etc/skel/ /etc/skel
-sudo rsync -av --chown=root:root "$cmd_path"/root_dir/etc/{issue,rc.local} /etc
+sudo rsync -a --delete --chown root:root "$cmd_path"/root_dir/etc/skel/ /etc/skel
+sudo rsync -a --chown=root:root "$cmd_path"/root_dir/etc/{issue,rc.local} /etc
 
 # Reinstall the /etc/skel/ contents to <user> home
 echo "[INFO] Installing skel files to $_userhome"
 sudo rsync -av --chown="${_user}:${_usergrp}" /etc/skel/{.bash_profile,.bashrc,.xkb} "$_userhome"
 for d in /etc/skel/.config/*; do
     if [ -d "$d" ]; then
-        sudo rsync -av --chown="${_user}:${_usergrp}" --delete "$d/" "$_userhome/.config/$(basename "$d")"
+        sudo rsync -a --chown="${_user}:${_usergrp}" --delete "$d/" "$_userhome/.config/$(basename "$d")"
     fi
 done

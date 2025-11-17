@@ -9,5 +9,6 @@ if [[ "$(tty)" == "/dev/tty1" ]]; then
     [ -f $HOME/.config/sway/scripts/startsway.sh ] &&
         $HOME/.config/sway/scripts/startsway.sh &&
         pkill -u "$USER" &&
+        clear &&
         logout
 fi

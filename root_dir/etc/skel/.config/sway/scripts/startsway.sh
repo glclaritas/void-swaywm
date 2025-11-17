@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 clear
 
 export QT_QPA_PLATFORM=wayland-egl
@@ -13,7 +13,7 @@ export ELM_ENGINE=wayland_egl
 
 export XDG_CURRENT_DESKTOP=sway
     
-export GSK_RENDERER=ngl # for swayosd to start faster(in my case)
+export GSK_RENDERER=gl # for gtk4 apps to start faster(in my case)
 # avoid loading nvidia modules ( ref arch linux wayland wiki )
 #export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json
 
