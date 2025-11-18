@@ -4,10 +4,12 @@
 
     --noti-bg-alpha: 0.9;
     --noti-bg: 36, 39, 58;
-    --noti-bg-hover: rgb(73, 77, 100);
+    --noti-bg-hover: rgb(48, 52, 74);
+    --noti-close-bg: rgb(78, 78, 78);
+    --noti-close-bg-hover: rgb(94, 94, 94);
 
-    --font-size-body: 13px;
-    --font-size-summary: 14px;
+    --font-size-body: 14px;
+    --font-size-summary: 15px;
 
     --mpris-album-art-overlay: rgba(0, 0, 0, 0.55);
     --mpris-button-hover: rgba(160, 160, 160, 0.5);
@@ -15,9 +17,17 @@
     --mpris-album-art-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
 }
 
-.widget-title button{
+.control-center .widget-title button {
+    background: rgb(40, 40, 40);
+    color: #d3d9f0;
     font-size: 12px;
-    padding: 2px;
+    padding: 8px;
+    border: none;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8), inset 0 0 0 1px #363a4f;
+}
+
+.control-center .widget-title button:disabled > label{
+    color: #7782a8; 
 }
 
 .control-center, .notification {
@@ -25,8 +35,8 @@
 }
 
 .notification {
-    font-family: 'Monofur Nerd Font';
-    color: green;
+    font-family: 'ComicShannsMono Nerd Font';
+    margin: 0px;
 }
 
 .notification-content {
@@ -53,6 +63,18 @@
     padding: 8px;
 }
 
+.control-center .notification-group .image-button{
+    color: rgb(200, 200, 200);
+    background: var(--noti-close-bg);
+    padding: 8px;
+    overflow: hidden;
+    border: none;
+}
+.control-center .notification-group .image-button:hover {
+    color: rgb(20, 20, 20);
+    background: rgb(200, 200, 200);
+}
+
 .control-center scrollbar {
     background: transparent;
     border: none;
@@ -65,9 +87,34 @@
     background: #24273a;
     border: none;
     min-width: 6px;
-    margin: 0px;
+    margin: 3px;
+}
+.control-center scrollbar trough slider:hover {
+    box-shadow: none;
+}
+.control-center scrollbar trough slider:active {
+    box-shadow: none;
 }
 
 .widget-mpris button {
-    background: white;
+    background: #cacede;
+    color: #333340;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8), inset 0 0 0 1px #363a4f;
+}
+
+.widget-mpris button:hover {
+    background: #343439;
+    color: #cacede;
+}
+
+/* hide gtk slider when there are many notis outside of noti center 
+ * this still doesn't prevent seg fault as of 0.12.3*/
+scrollbar, trough, slider {
+    background: transparent;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+}
+slider:hover, slider:active {
+    box-shadow: none;
 }
