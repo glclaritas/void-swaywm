@@ -33,10 +33,10 @@ cmd toggle-preview %{{
 cmd open &{{
 	case $(file --mime-type -Lb $f) in
 		text/*) lf -remote "send $id \$$EDITOR \$fx";;
-        application/pdf) firefox $f;;
-		image/*) swayimg -f -s fit $f > /dev/null 2>&1;;
-		video/*) mpv $f;;
-		*) for f in $fx; do mimeo $f > /dev/null 2> /dev/null & done;;
+        application/pdf) xdg-open $f;;
+		image/*) xdg-open $f > /dev/null 2>&1;;
+		video/*) xdg-open $f;;
+		*) for f in $fx; do xdg-open $f > /dev/null 2> /dev/null & done;;
 	esac
 }}
 cmd extract ${{
