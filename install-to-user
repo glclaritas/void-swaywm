@@ -43,7 +43,7 @@ done
 for f in etc/*; do
     echo "Checking for file $f"
     source_sum=$(sha256sum "$f" | awk '{print $1}')
-    dest_sum=$(sha256sum /etc/"$(basename "$f")" | awk '{print $1}')
+    dest_sum=$(sha256sum /etc/"$(basename "$f")" 2> /dev/null | awk '{print $1}')
     if [[ "$source_sum" != "$dest_sum" ]]; then
         echo "Updating $f"
         sudo rsync -a --chown="root:root" "$f" /etc/"$(basename "$f")"
