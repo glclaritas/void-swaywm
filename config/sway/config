@@ -26,7 +26,12 @@ input "type:keyboard" {
 	repeat_delay 200
 	repeat_rate 50
 }
+# for rkg65 bluetooth dongle
 input "9639:64112:Compx_2.4G_Wireless_Receiver" {
+    xkb_layout "rkg65-en,mm"
+}
+# for rkg65 wired
+input "9610:231:SINO_WEALTH_Bluetooth_Keyboard" {
     xkb_layout "rkg65-en,mm"
 }
 ### Mouse ###
@@ -39,10 +44,10 @@ input "type:pointer" {
 output eDP-1 {
     bg ~/Pictures/Wallpapers/wallpaper fill
 #    allow_tearing no
-#    color_profile icc ~/.config/sway/colorprofiles/G531GU_8086_70380042.icm
+    #color_profile icc ~/.config/sway/colorprofiles/G531GU_8086_70380042.icm
 }
 
-xwayland enable
+xwayland enabled
 
 # startups
 exec dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
