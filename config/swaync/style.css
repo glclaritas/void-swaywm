@@ -39,6 +39,19 @@
     margin: 0px;
 }
 
+.notification .notification-action button{
+    background: #24273A;
+    color: #c9d3f4;
+    border: solid 1px black;
+    border-radius: 4px;
+}
+.notification .notification-action button:hover {
+    background: rgb(48, 52, 74);
+}
+.notification .notification-action button:disabled > label {
+    color: #c9d3f4;
+}
+
 .notification-content {
     min-height: 20px;
     padding: 10px;
@@ -67,7 +80,6 @@
     color: rgb(200, 200, 200);
     background: var(--noti-close-bg);
     padding: 8px;
-    overflow: hidden;
     border: none;
 }
 .control-center .notification-group .image-button:hover {
