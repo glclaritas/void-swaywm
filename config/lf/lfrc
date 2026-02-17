@@ -32,12 +32,14 @@ cmd toggle-preview %{{
 
 cmd open &{{
 	case $(file --mime-type -Lb $f) in
+        # lol
 		text/*) lf -remote "send $id \$$EDITOR \$fx";;
-        application/pdf) xdg-open $f;;
-		image/*) xdg-open $f > /dev/null 2>&1;;
-		video/*) xdg-open $f;;
-		*) for f in $fx; do xdg-open $f > /dev/null 2> /dev/null & done;;
+        application/pdf) mimeo $f;;
+		image/*) mimeo "$f" > /dev/null 2>&1;;
+		video/*) mimeo "$f";;
+        *) mimeo "$f";;
 	esac
+
 }}
 cmd extract ${{
     set -f
