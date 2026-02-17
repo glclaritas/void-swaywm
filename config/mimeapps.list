@@ -1,8 +1,11 @@
 [Default Applications]
 application/x-blender=blender.desktop;
+application/pdf=firefox.desktop
 
+image/apng=swayimg.desktop
 image/bmp=swayimg.desktop;
 image/gif=swayimg.desktop;
+image/heic=swayimg.desktop;
 image/heif=swayimg.desktop;
 image/jpeg=swayimg.desktop;
 image/jpg=swayimg.desktop;
@@ -10,6 +13,7 @@ image/png=swayimg.desktop;
 image/svg+xml=swayimg.desktop;
 image/tiff=swayimg.desktop;
 image/x-xcf=gimp.desktop;
+image/x-aseprite=aseprite.desktop
 
 video/3gpp=mpv.desktop;
 video/3gpp2=mpv.desktop;
@@ -23,18 +27,26 @@ video/x-flv=mpv.desktop;
 video/x-matroska=mpv.desktop;
 video/x-matroska-3d=mpv.desktop;
 
-text/html=firefox.desktop;
-x-scheme-handler/chrome=firefox.desktop;
-x-scheme-handler/http=firefox.desktop;
-x-scheme-handler/https=firefox.desktop;
+text/html=firefox.desktop
+x-scheme-handler/chrome=firefox.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+application/x-extension-htm=firefox.desktop
+application/x-extension-html=firefox.desktop
+application/x-extension-shtml=firefox.desktop
+application/xhtml+xml=firefox.desktop
+application/x-extension-xhtml=firefox.desktop
+application/x-extension-xht=firefox.desktop
+x-scheme-handler/about=firefox.desktop
+x-scheme-handler/unknown=firefox.desktop
+x-scheme-handler/viber=viber.desktop
 
 [Added Associations]
 image/x-aseprite=aseprite.desktop;
-
 text/html=firefox.desktop;
 application/x-extension-htm=firefox.desktop;
 application/x-extension-html=firefox.desktop;
-application/x-extension-shtml=firefox.desktop
+application/x-extension-shtml=firefox.desktop;
 application/x-extension-xht=firefox.desktop;
 application/x-extension-xhtml=firefox.desktop;
 application/xhtml+xml=firefox.desktop;
