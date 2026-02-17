@@ -33,3 +33,5 @@ for_window [app_id="^org.telegram.desktop$"] workspace number 5
 for_window [app_id="^org.pulseaudio.pavucontrol$"] floating enable; resize set 500 300; move position 1420 px 0 ppt;
 
 for_window [app_id="^foot-lf-chooser$"] floating enable; resize set 1000 600; sticky enable;
+
+no_focus [app_id="^nnn-preview-tui$"]

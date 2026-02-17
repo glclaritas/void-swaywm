@@ -51,16 +51,13 @@ xwayland enabled
 
 # startups
 exec dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
-exec pipewire
-exec pipewire-pulse
-exec wireplumber
-exec swaync
-exec /usr/libexec/polkit-mate-authentication-agent-1
-#exec /usr/libexec/xdg-desktop-portal-wlr
-#exec /usr/libexec/xdg-desktop-portal
-exec wl-paste -t text --watch clipman store --no-persist
+exec_always swaync
+# TODO swithc to another agent; exec /usr/libexec/polkit-mate-authentication-agent-1
+exec_always /usr/libexec/xdg-desktop-portal-wlr -r
+exec clipman clear --all
+exec wl-paste -t text --watch clipman store --no-persist --max-items=10
 exec swayosd-server
-exec rogctl -p2
+exec rogctl -p4
 
 bar {
     swaybar_command waybar

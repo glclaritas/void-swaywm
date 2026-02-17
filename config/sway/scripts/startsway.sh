@@ -1,9 +1,15 @@
 #!/bin/bash
 clear
 
-export WLR_BACKENDS="libinput,drm" # comma-separated list of backends to use (available backends:libinput, drm, wayland, x11, headless)
-export WLR_DRM_DEVICES=/dev/dri/card0
-export WLR_RENDER_DRM_DEVICE=/dev/dri/renderD128
+echo "Starting sway..."
+if [ -n  "$SWAYSOCK" ]; then
+    echo "SwayWM is already running."
+    exit 0;
+fi
+
+#export WLR_BACKENDS="libinput,drm" # comma-separated list of backends to use (available backends:libinput, drm, wayland, x11, headless)
+#export WLR_DRM_DEVICES=/dev/dri/card0
+#export WLR_RENDER_DRM_DEVICE=/dev/dri/renderD128
 export WLR_RENDERER=gles2 # vulkan, gles2, pixman
 
 export QT_QPA_PLATFORM="wayland;wayland-egl,xcb"
@@ -23,8 +29,4 @@ export GSK_RENDERER=gl # for gtk4 apps to start faster(in my case)
 
 export GTK_USE_PORTAL=1 # for terminal file chooser
 
-echo "Starting sway..."
-if [ -n  "$SWAYSOCK" ]; then
-    echo "SwayWM is already running."
-else dbus-run-session sway > /tmp/${UID}-sway.log 2>&1
-fi
+sway --unsupported-gpu > /tmp/${UID}-sway.log 2>&1

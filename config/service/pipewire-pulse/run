@@ -1,0 +1,7 @@
+#!/bin/sh
+exec 2>&1
+
+# Check wireplumber
+sv check "$HOME/.config/service/wireplumber" || exit 1
+
+exec pipewire-pulse

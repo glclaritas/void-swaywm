@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eu
+
 script_dir="$(dirname "$(realpath -- "${BASH_SOURCE[0]}")")"
 
 rm -rf "${script_dir:?}/config" && echo "Removed old config dir"
@@ -16,6 +18,7 @@ _configs="
  mimeapps.list
  mpv
  nvim
+ service
  sway
  swayimg
  swayosd
@@ -24,8 +27,12 @@ _configs="
  waybar
  wofi
 "
+echo "Updating config dir"
 for i in $_configs; do
     rsync -a --delete "$HOME/.config/$i" "$script_dir/config/"
 done
+# clear service supervise dir
+rm -rf "${script_dir:?}"/config/service/*/supervise
 
+echo "Updating config in /etc/"
 rsync -pt /etc/{issue,rc.local} "$script_dir/etc/"
