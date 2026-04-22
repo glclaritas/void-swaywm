@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <object class="GtkMenu" id="menu">
+        <child>
+            <object class="GtkMenuItem" id="powersave">
+                <property name="label">Powersave</property>
+            </object>
+        </child>
+        <child>
+            <object class="GtkMenuItem" id="balanced">
+                <property name="label">Balanced</property>
+            </object>
+        </child>
+        <child>
+            <object class="GtkMenuItem" id="turbo">
+                <property name="label">Turbo</property>
+            </object>
+        </child>
+        <child>
+            <object class="GtkMenuItem" id="custom">
+                <property name="label">Custom</property>
+            </object>
+        </child>
+    </object>
+</interface>

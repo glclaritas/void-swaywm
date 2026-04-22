@@ -78,8 +78,8 @@
        	"format-bluetooth": "{volume}% {icon} {format_source}",
 	"format-bluetooth-muted": "{icon}󰖁 {format_source}",
 	"format-muted": "󰖁",
-	"format-source": "",
-	"format-source-muted": "",
+	"format-source": " {volume}",
+	"format-source-muted": " {volume}",
 	"format-icons": {
                	"headphones": "",
                	"handsfree": "󰟎",
@@ -116,7 +116,6 @@
       "dnd-inhibited-none": ""
     },
     "return-type": "json",
-//    "exec-if": "! pgrep -x swaync-client > /dev/null",
     "exec": "swaync-client -swb",
     "on-click": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
@@ -128,5 +127,17 @@
         "icons": {
             "TelegramDesktop": "telegram"
         }
+    },
+    "custom/roghub": {
+        "format": "POWER",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "~/.config/waybar/roghub_menu.xml",
+        "menu-actions": {
+            "powersave": "rogctl -dp1",
+            "balanced": "rogctl -dp2",
+            "turbo": "rogctl -dp3",
+            "custom": "rogctl -dp4",
+        },
     },
 }
