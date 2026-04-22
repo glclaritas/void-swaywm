@@ -1,0 +1,4 @@
+[options]
+fullscreen=true
+loop_input=true
+scaling_mode=full
