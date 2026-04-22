@@ -14,3 +14,6 @@ fi
 if [ -e /sys/class/leds/asus\:\:kbd_backlight/brightness ]; then
 	echo 0 | tee /sys/class/leds/asus\:\:kbd_backlight/brightness > /dev/null
 fi
+
+# undervolt
+intel-undervolt apply > /dev/null 2>&1

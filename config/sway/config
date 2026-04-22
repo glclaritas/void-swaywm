@@ -47,11 +47,11 @@ output eDP-1 {
     #color_profile icc ~/.config/sway/colorprofiles/G531GU_8086_70380042.icm
 }
 
-xwayland enabled
+xwayland disabled
 
 # startups
 exec dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
-exec_always swaync
+exec_always swaync --replace
 # TODO swithc to another agent; exec /usr/libexec/polkit-mate-authentication-agent-1
 exec_always /usr/libexec/xdg-desktop-portal-wlr -r
 exec clipman clear --all

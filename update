@@ -10,9 +10,11 @@ rm -rf "${script_dir:?}/etc" && echo "Removed old etc dir"
 for i in .bash_profile .bashrc .xkb; do
     rsync -a --delete "$HOME/$i" "$script_dir/"
 done
+
 _configs="
  foot
  fuzzel
+ imv
  lf
  mako
  mimeapps.list
@@ -26,13 +28,13 @@ _configs="
  xdg-desktop-portal-termfilechooser
  waybar
  wofi
+ yt-dlp
 "
+
 echo "Updating config dir"
 for i in $_configs; do
     rsync -a --delete "$HOME/.config/$i" "$script_dir/config/"
 done
-# clear service supervise dir
-rm -rf "${script_dir:?}"/config/service/*/supervise
 
 echo "Updating config in /etc/"
 rsync -pt /etc/{issue,rc.local} "$script_dir/etc/"

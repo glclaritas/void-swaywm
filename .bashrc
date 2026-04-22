@@ -3,14 +3,15 @@
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+export NNN_OPTS="eaA"
 export NNN_OPENER=mimeo
 export NNN_FIFO=/tmp/nnn.fifo
-export NNN_PLUG='p:preview-tui;'
+export NNN_PLUG='p:preview-tui'
 export NNN_TERMINAL="$TERM --app-id=nnn-preview-tui"
 
 #alias
 alias ls='ls --color=auto'
-alias fm='nnn -e'
+alias fm='tmux new-session "nnn"'
 
 #auto cd
 shopt -s autocd

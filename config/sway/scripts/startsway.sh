@@ -27,6 +27,8 @@ export GSK_RENDERER=gl # for gtk4 apps to start faster(in my case)
 #export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json
 #export VK_DRIVER_FILES=/usr/share/vulkan/icd.d/intel_icd.x86_64.json
 
+export _JAVA_AWT_WM_NONREPARENTING=1 # for java apps on wayland
+
 export GTK_USE_PORTAL=1 # for terminal file chooser
 
 sway --unsupported-gpu > /tmp/${UID}-sway.log 2>&1
