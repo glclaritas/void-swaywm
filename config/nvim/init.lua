@@ -1,6 +1,3 @@
--- Theme --
-vim.api.nvim_command("colorscheme catppuccin-macchiato")
-
 -- General Options --
 vim.opt.termguicolors = true
 vim.opt.number = true
@@ -16,6 +13,7 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.backup = false
 vim.opt.swapfile = false
+vim.opt.winborder = 'rounded'
 --vim.opt.cmdheight = 0
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -28,11 +26,7 @@ vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent
 vim.keymap.set('n', '<leader>r', ':NvimTreeFindFile<CR>', { noremap = true, silent = true })
 -- Key Bindings END--
 
-
--- Rounded borders
-vim.opt.winborder = 'rounded'
-
--- LSP --
+-- LSP START --
 vim.lsp.log.set_level(vim.log.levels.OFF)
 vim.lsp.enable({
     'clangd',
@@ -78,5 +72,22 @@ vim.diagnostic.config({
     },
 })
 
--- nvim-tree
-require("nvim-tree").setup {}
+-- LSP END --
+
+-- pack --
+vim.pack.add({
+    { src = 'https://github.com/catppuccin/nvim', name = 'catppuccin'},
+    { src = 'https://github.com/nvim-tree/nvim-tree.lua', version = vim.version.range('>=0.0.0') },
+    { src = 'https://github.com/nvim-tree/nvim-web-devicons', version = 'master' },
+    --{ src = 'https://github.com/nvim-treesitter/nvim-treesitter', name = 'nvim-treesitter', version = 'master'},
+})
+
+require('nvim-web-devicons').setup()
+require('nvim-tree').setup()
+require('catppuccin')
+vim.api.nvim_command("colorscheme catppuccin-macchiato")
+--require'nvim-treesitter.configs'.setup {
+--  highlight = {
+--    enable = true, -- This is the switch that turns on the colors
+--  },
+--}

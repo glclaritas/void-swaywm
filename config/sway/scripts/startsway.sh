@@ -10,7 +10,7 @@ fi
 #export WLR_BACKENDS="libinput,drm" # comma-separated list of backends to use (available backends:libinput, drm, wayland, x11, headless)
 #export WLR_DRM_DEVICES=/dev/dri/card0
 #export WLR_RENDER_DRM_DEVICE=/dev/dri/renderD128
-export WLR_RENDERER=gles2 # vulkan, gles2, pixman
+export WLR_RENDERER=vulkan # vulkan, gles2, pixman
 
 export QT_QPA_PLATFORM="wayland;wayland-egl,xcb"
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1

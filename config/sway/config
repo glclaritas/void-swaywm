@@ -45,6 +45,8 @@ output eDP-1 {
     bg ~/Pictures/Wallpapers/wallpaper fill
 #    allow_tearing no
     #color_profile icc ~/.config/sway/colorprofiles/G531GU_8086_70380042.icm
+    color_profile icc ~/.config/sway/colorprofiles/G531GU_8086_104D14D3.icm
+    #color_profile with icc require vulkan renderer in sway startup scripts
 }
 
 xwayland disabled
