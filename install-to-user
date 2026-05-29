@@ -34,7 +34,7 @@ fi
 
 # install dotfiles to <user> home
 echo "[INFO] Installing dot files to $_userhome"
-${_cmd_prefix} rsync -av --chown="${_user}:${_usergrp}" "${script_dir:?}"/{.bash_profile,.bashrc,.xkb} "$_userhome/"
+${_cmd_prefix} rsync -av --chown="${_user}:${_usergrp}" "${script_dir:?}"/home/{.bash_profile,.bashrc,.xkb,.newsboat} "$_userhome/"
 
 for f in "${script_dir:?}"/config/*; do
     ${_cmd_prefix} rsync -a --chown="${_user}:${_usergrp}" --delete "$f" "$_userhome/.config/"
