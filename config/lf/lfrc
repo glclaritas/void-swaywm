@@ -12,7 +12,7 @@ set info size
 set preview true
 set mouse false
 #set sixel true     # not needed after r38
-set previewer ~/.config/lf/previewSandbox.sh
+set previewer ~/.config/lf/previewer.sh
 set drawbox
 set cursorpreviewfmt "\033[4m"
 set icons
@@ -35,7 +35,9 @@ cmd open &{{
         # lol
 		text/*) lf -remote "send $id \$$EDITOR \$fx";;
         application/pdf) mimeo $f;;
-		image/*) mimeo "$f" > /dev/null 2>&1;;
+        application/json) lf -remote "send $id \$$EDITOR \$fx";;
+		#image/*) mimeo "$f" > /dev/null 2>&1;;
+		image/*) imv-wayland "$f" > /dev/null 2>&1;;
 		video/*) mimeo "$f";;
         *) mimeo "$f";;
 	esac

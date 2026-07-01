@@ -1,0 +1,25 @@
+# --- Format: best 1080p video (av1) + English audio ---
+-f "bv*[height<=1080]+ba/b[height<=1080]"
+--format-sort "vcodec:av01,res:1080"
+#-f "bv*[vcodec!*=av01][height<=1080]_dash+ba[language=en]_dash/bv*[vcodec!*=av01][height<=1080]_dash+ba_dash"
+--merge-output-format mkv
+
+# --- Output template: only video title ---
+-o "%(uploader)s - %(title)s.%(ext)s"
+
+# --- Subtitles ---
+--sub-lang en
+--sub-format srt
+--embed-subs
+
+# --- Thumbnails ---
+--embed-thumbnail
+--convert-thumbnails png
+
+--add-metadata
+
+# --- General behavior ---
+--mtime
+--progress
+--console-title
+--continue

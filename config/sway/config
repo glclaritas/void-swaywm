@@ -49,17 +49,17 @@ output eDP-1 {
     #color_profile with icc require vulkan renderer in sway startup scripts
 }
 
-xwayland disabled
+xwayland enable
 
 # startups
 exec dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
-exec_always swaync --replace
 # TODO swithc to another agent; exec /usr/libexec/polkit-mate-authentication-agent-1
 exec_always /usr/libexec/xdg-desktop-portal-wlr -r
 exec clipman clear --all
 exec wl-paste -t text --watch clipman store --no-persist --max-items=10
 exec swayosd-server
 exec rogctl -p4
+# mako yeah mako
 
 bar {
     swaybar_command waybar

@@ -5,19 +5,21 @@
 
 export NNN_OPTS="eaA"
 export NNN_OPENER=mimeo
-export NNN_FIFO=/tmp/nnn.fifo
-export NNN_PLUG='p:preview-tui'
+#export NNN_FIFO=/tmp/nnn.fifo  # -a
+export NNN_PLUG='p:preview'
 export NNN_TERMINAL="$TERM --app-id=nnn-preview-tui"
 
 #alias
 alias ls='ls --color=auto'
-alias fm='tmux new-session "nnn"'
+alias fm='nnn -ae'
 
 #auto cd
 shopt -s autocd
 
 #clear history
 rm $HOME/.bash_history*.tmp > /dev/null 2>&1
+
+# git 
 
 PS1='[\W] \$ '
 PS0='\[\033[0m\]'

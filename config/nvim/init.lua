@@ -26,6 +26,27 @@ vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent
 vim.keymap.set('n', '<leader>r', ':NvimTreeFindFile<CR>', { noremap = true, silent = true })
 -- Key Bindings END--
 
+
+-- pack --
+vim.pack.add({
+    { src = 'https://github.com/catppuccin/nvim', name = 'catppuccin'},
+    { src = 'https://github.com/nvim-tree/nvim-tree.lua', version = 'v1.18.0' },
+    { src = 'https://github.com/nvim-tree/nvim-web-devicons', version = 'master' },
+    { src = 'https://github.com/neovim/nvim-lspconfig' },
+    --{ src = 'https://github.com/nvim-treesitter/nvim-treesitter', name = 'nvim-treesitter', version = 'v0.10.0'},
+    { src = 'https://github.com/nvim-lualine/lualine.nvim', name = 'lualine'},
+})
+
+require('nvim-web-devicons').setup()
+require('nvim-tree').setup()
+require('catppuccin')
+vim.api.nvim_command("colorscheme catppuccin-macchiato")
+require('lualine').setup()
+--require'nvim-treesitter.configs'.setup {
+--  highlight = {
+--    enable = true, -- This is the switch that turns on the colors
+--  },
+--}
 -- LSP START --
 vim.lsp.log.set_level(vim.log.levels.OFF)
 vim.lsp.enable({
@@ -71,23 +92,4 @@ vim.diagnostic.config({
         current_line = true,
     },
 })
-
 -- LSP END --
-
--- pack --
-vim.pack.add({
-    { src = 'https://github.com/catppuccin/nvim', name = 'catppuccin'},
-    { src = 'https://github.com/nvim-tree/nvim-tree.lua', version = vim.version.range('>=0.0.0') },
-    { src = 'https://github.com/nvim-tree/nvim-web-devicons', version = 'master' },
-    --{ src = 'https://github.com/nvim-treesitter/nvim-treesitter', name = 'nvim-treesitter', version = 'master'},
-})
-
-require('nvim-web-devicons').setup()
-require('nvim-tree').setup()
-require('catppuccin')
-vim.api.nvim_command("colorscheme catppuccin-macchiato")
---require'nvim-treesitter.configs'.setup {
---  highlight = {
---    enable = true, -- This is the switch that turns on the colors
---  },
---}
