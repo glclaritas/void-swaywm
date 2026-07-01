@@ -34,8 +34,16 @@ group-by=category
 [app-name=mako-osd]
 anchor=bottom-center
 outer-margin=0,0,120,0
-width=320
+text-alignment=center
+width=220
 height=80
 group-by=app-name
 history=0
 
+[app-name=rogctl]
+anchor=bottom-center
+padding=10,0,10,0
+text-alignment=center
+width=180
+height=80
+group-by=app-name
