@@ -1,7 +1,7 @@
 #Basic variables
 #Preferences Mod1 for Windows/Super key. Mod1 for alt
 set $mod Mod4
-set $term foot
+set $term footclient
 set $dmenu fuzzel --icon-theme=Papirus
 set $left h
 set $right l
@@ -49,7 +49,7 @@ output eDP-1 {
     #color_profile with icc require vulkan renderer in sway startup scripts
 }
 
-xwayland enable
+xwayland disable
 
 # startups
 exec dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
@@ -57,12 +57,25 @@ exec dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CUR
 exec_always /usr/libexec/xdg-desktop-portal-wlr -r
 exec clipman clear --all
 exec wl-paste -t text --watch clipman store --no-persist --max-items=10
-exec swayosd-server
+# exec swayosd-server
 exec rogctl -p4
 # mako yeah mako
+exec_always foot -s
 
 bar {
     swaybar_command waybar
+    #font pango:DejaVu Sans Mono, FontAwesome 12
+    #position top
+    #status_command i3status-rs
+    #colors {
+    #    separator #666666
+    #    background #222222
+    #    statusline #dddddd
+    #    focused_workspace #0088CC #0088CC #ffffff
+    #    active_workspace #333333 #333333 #ffffff
+    #    inactive_workspace #333333 #333333 #888888
+    #    urgent_workspace #2f343a #900000 #ffffff
+    #}
 }
 
 include ~/.config/sway/config.d/keybinding

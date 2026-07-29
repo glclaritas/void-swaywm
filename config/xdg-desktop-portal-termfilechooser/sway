@@ -1,7 +1,7 @@
 [filechooser]
-cmd=lf-wrapper.sh
+cmd=nnn-wrapper.sh
 default_dir=$HOME
-env=TERMCMD="foot --app-id=foot-lf-chooser"
+env=TERMCMD="foot --app-id=foot-term-file-chooser"
 ; to use with sway windowing rule
 env=EDITOR=nvim
 open_mode=suggested

@@ -22,6 +22,7 @@ _configs="
  swayosd
  swaync
  xdg-desktop-portal-termfilechooser
+ xdg-desktop-portal-wlr
  waybar
  wofi
  yt-dlp

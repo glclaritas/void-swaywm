@@ -6,4 +6,5 @@ bind-key k up
 bind-key l open
 bind-key h quit
 
-confirm-exit yes
+confirm-exit    yes
+auto-reload     yes

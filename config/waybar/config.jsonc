@@ -8,7 +8,7 @@
     "margin": "0 0 0 0",
     "modules-left": ["sway/workspaces","sway/language","sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["tray","network","pulseaudio","battery"],
+    "modules-right": ["sway/scratchpad", "tray","network","pulseaudio","battery"],
     "ipc": true,
     "reload_style_on_change": true,
 
@@ -139,5 +139,12 @@
             "turbo": "rogctl -dp3",
             "custom": "rogctl -dp4",
         },
+    },
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}",
     },
 }
