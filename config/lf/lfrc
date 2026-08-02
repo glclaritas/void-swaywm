@@ -104,6 +104,11 @@ cmd edit-config ${{
     lf -remote "send $id source ~/.config/lf/lfrc"
 }}
 
+# generate thumbs for current dir
+cmd lf-gen-thumb &{{
+    ~/.config/lf/lf-gen-thumb.sh "$PWD"
+}}
+
 ##### mappings #####
 map <enter> shell
 map x $$f
@@ -120,6 +125,7 @@ map C edit-config
 map zp toggle-preview
 map gL follow-link
 map <a-d> ff-dnd
+map <esc>t :lf-gen-thumb
 
 #map Jumpings
 map go cd /opt
