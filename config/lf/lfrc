@@ -118,7 +118,7 @@ map O $mimeopen --ask $f
 map a :push %mkdir<space>
 map <delete> delete
 map <esc>c clear-trash
-map <backspace2> set hidden!
+map <backspace> set hidden!
 map - $~/.config/lf/draw.sh "$f"
 map p paste; clear
 map C edit-config

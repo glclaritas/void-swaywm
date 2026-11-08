@@ -1,77 +1,82 @@
 #!/bin/bash
+# lf-gen-thumb.sh <path>
+# Pre-generate XDG-style thumbnails. Current dir first, then subdirs level by level.
 
-# $1 = full path of target dir
-[ $# -ne 1 ] && exit 1
-dir="$1"
+[ $# -eq 1 ] || exit 1
+target="$(realpath -ms -- "$1")"
 
-bg="#24273a"
-CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
-THUMB_DIR="$CACHE_HOME/thumbnails"
-THUMB_SIZE="lf"         # sync this with THUMB_SIZE from previewer.sh. this can use xdg specs sizes like large, normal but but ...
-THUMB_DIMENSION="256"
+# shellcheck source=lf-thumb-common.sh
+. "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/lf-thumb-common.sh" || exit 1
 
 # restrictions at top level
-case "$dir" in
-    "$CACHE_HOME"* | "$HOME" | "$HOME"/.*)
+case "$target" in
+    "$CACHE_HOME" | "$CACHE_HOME"/* | "$HOME" | "$HOME"/.*)
         echo "Restricted directory"
         exit 1
         ;;
 esac
 
-get_xdg_thumb_hash() {
-    python3 -c '
-    import sys, urllib.parse, hashlib, os
-    path = os.path.abspath(sys.argv[1])
-    uri = "file://" + urllib.parse.quote(path, safe="/")
-    print(hashlib.md5(uri.encode("utf-8")).hexdigest())
-    ' "$1"
+mkdir -p -- "$THUMB_ROOT" || exit 1
+shopt -s nullglob
+
+# $1 = file, $2 = mime, $3 = output thumbnail
+make_thumb() {
+    case $2 in
+        image/x-aseprite)
+            aseprite-thumbnailer "$1" "$3" "$THUMB_DIMENSION"
+            ;;
+        image/*)
+            vipsthumbnail "$1" \
+                --size "$THUMB_DIMENSION" \
+                --output-profile srgb \
+                --path "$3[compression=9,palette=true,Q=80,keep=none]" \
+                --delete
+            ;;
+        video/*)
+            ffmpegthumbnailer -i "$1" -o "$3" -s "$THUMB_DIMENSION" -c png -m -q 8
+            ;;
+    esac
 }
 
-gen_thumb() {
-    subdirs=""
-    for file in "$1"/*; do
-        if [ -d "$file" ]; then
-            subdirs+=" ${file}"
-            continue
+# args = files. Skips files that already have a valid thumbnail,
+# detects mime types for the rest in ONE `file` call.
+process_files() {
+    local -a todo=() thumbs=() mimes=()
+    local f i mime
+    for f; do
+        thumb_path "$f"
+        [[ -s $REPLY ]] && continue
+        rm -f -- "$REPLY"                  # drop empty/broken leftovers
+        todo+=("$f"); thumbs+=("$REPLY")
+    done
+    ((${#todo[@]})) || return 0
+
+    mapfile -t mimes < <(file -Lb --mime-type -- "${todo[@]}")
+    for i in "${!todo[@]}"; do
+        f=${todo[i]}; mime=${mimes[i]}
+        case ${f,,} in *.ase | *.aseprite) mime=image/x-aseprite ;; esac
+        make_thumb "$f" "$mime" "${thumbs[i]}" || rm -f -- "${thumbs[i]}"
+    done
+}
+
+# single file
+if [[ -f $target ]]; then
+    process_files "$target"
+    exit 0
+fi
+[[ -d $target ]] || exit 1
+
+# breadth-first: files of a dir first, its subdirs go to the queue
+queue=("$target")
+for (( q = 0; q < ${#queue[@]}; q++ )); do
+    files=()
+    for f in "${queue[q]}"/*; do
+        if [[ -d $f && ! -L $f ]]; then
+            queue+=("$f")
+        elif [[ -f $f ]]; then
+            files+=("$f")
         fi
-
-        # manually handle uncaught types
-        case "$file" in
-            *.ase | *.aseprite)
-                mime="image/x-aseprite"
-                ;;
-            *)
-                mime="$(file -Lb --mime-type -- "$file")"
-                ;;
-        esac
-
-        file_hash="$(get_xdg_thumb_hash "$file")"
-        thumb_path="${THUMB_DIR}/${THUMB_SIZE}/${file_hash}.png"
-
-        case "$mime" in
-            image/x-aseprite)
-                aseprite-thumbnailer "$file" "$thumb_path" "$THUMB_DIMENSION"
-                ;;
-            image/* | video/*)
-
-                [ -f "$thumb_path" ] || [ ! -s "$thumb_path" ] && rm -f "$thumb_path"
-            
-                mkdir -p "${THUMB_DIR}/${THUMB_SIZE}" 2>/dev/null || :
-                case "$mime" in
-                    image/*)
-                        convert "$file" -thumbnail "${THUMB_DIMENSION}x${THUMB_DIMENSION}" -background "$bg" -alpha remove -alpha off "$thumb_path"
-                        ;;
-                    video/*)
-                        ffmpegthumbnailer -i "$file" -o "$thumb_path" -s "${THUMB_DIMENSION}" -c png -m -q 8
-                        ;;
-                esac
-                ;;
-        esac
     done
-    for subdir in $subdirs; do
-        gen_thumb "$subdir"
-    done
-}
-
-gen_thumb "$dir"
+    process_files "${files[@]}"
+done
 exit 0
