@@ -56,6 +56,7 @@ vim.lsp.enable({
     'rust-analyzer',
     'pyright',
     'bashls',
+    'qmlls',
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {

@@ -6,8 +6,8 @@ for_window [window_type="dialog"] floating enable
 
 #for_window [app_id="^mpv$"] floating enable
 
-assign [app_id="^Firefox"] 2
-for_window [app_id="^Firefox"] workspace number 2
+assign [app_id="^firefox"] 2
+for_window [app_id="^firefox"] workspace number 2
 assign [app_id="^firefox-esr"] 2
 for_window [app_id="^firefox-esr"] workspace number 2
 assign [app_id="^chromium$"] 2

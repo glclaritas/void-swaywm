@@ -1,4 +1,5 @@
 include ~/.newsboat/dark
+datetime-format "%b %d, %Y"
 
 # movement
 bind-key j down

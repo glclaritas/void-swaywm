@@ -16,4 +16,4 @@ if [ -e /sys/class/leds/asus\:\:kbd_backlight/brightness ]; then
 fi
 
 # undervolt
-intel-undervolt apply > /dev/null 2>&1
+#intel-undervolt apply > /dev/null 2>&1		# disable for now

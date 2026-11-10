@@ -49,7 +49,7 @@ output eDP-1 {
     #color_profile with icc require vulkan renderer in sway startup scripts
 }
 
-xwayland disable
+xwayland enable
 
 # startups
 exec dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
@@ -61,6 +61,7 @@ exec wl-paste -t text --watch clipman store --no-persist --max-items=10
 exec rogctl -p4
 # mako yeah mako
 exec_always foot -s
+exec_always qs kill || true && qs
 
 bar {
     swaybar_command waybar

@@ -22,7 +22,7 @@ export ELM_ENGINE=wayland_egl
 
 export XDG_CURRENT_DESKTOP=sway
     
-export GSK_RENDERER=gl # for gtk4 apps to start faster(in my case)
+export GSK_RENDERER=vulkan # for gtk4 apps to start faster(in my case)
 # avoid loading nvidia modules ( ref arch linux wayland wiki )
 #export __EGL_VENDOR_LIBRARY_FILENAMES=/usr/share/glvnd/egl_vendor.d/50_mesa.json
 #export VK_DRIVER_FILES=/usr/share/vulkan/icd.d/intel_icd.x86_64.json
