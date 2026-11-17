@@ -21,6 +21,7 @@ _configs="
  swayimg
  swayosd
  swaync
+ tmux
  xdg-desktop-portal-termfilechooser
  xdg-desktop-portal-wlr
  waybar

@@ -35,3 +35,4 @@ for_window [app_id="^org.pulseaudio.pavucontrol$"] floating enable; resize set 5
 for_window [app_id="^foot-term-file-chooser$"] floating enable; resize set 1000 600; sticky enable;
 
 no_focus [app_id="^nnn-preview-tui$"]
+no_focus [app_id="^nnn-preview$"]

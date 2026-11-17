@@ -1,8 +1,6 @@
 [filechooser]
 cmd=nnn-wrapper.sh
 default_dir=$HOME
-env=TERMCMD="foot --app-id=foot-term-file-chooser"
-; to use with sway windowing rule
-env=EDITOR=nvim
+env=TERMCMD="foot --app-id=foot-term-file-chooser tmux -L nnn -f $HOME/.config/tmux/nnn.conf new-session --"
 open_mode=suggested
 save_mode=last
